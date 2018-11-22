@@ -9,6 +9,8 @@ def scanContractInPeriod(web3, startBlockNumber, endBlockNumber):
         transactions = block.transactions
         for transaction in transactions:
             receipt = web3.eth.getTransactionReceipt(transaction)
+            # check if contract deployed successfully
+            # if receipt.contractAddress and web3.toHex(web3.eth.getCode(receipt.contractAddress)) == '0x':
             if receipt.contractAddress:
                 contract = receipt.contractAddress + '\n'
                 with open('ContractList.txt', 'a') as f:
@@ -32,11 +34,13 @@ def auditAllContractFound():
             auditContractByAddress(line.rstrip('\n'))
 
 if __name__ == "__main__":
-    if sys.argv[1] == '-a':
+    if len(sys.argv) == 1:
+        print("Use argument -a to audit all contracts found, and -s to scan all contract till lastest block!")
+    elif sys.argv[1] == '-a':
         auditAllContractFound()
     elif sys.argv[1] == '-s':
         web3 = Web3(Web3.HTTPProvider("https://mainnet.infura.io/v3/f8fd67ea548840fcacb384f39e6f579d"))
-        startBlockNumber = 47000
+        startBlockNumber = 1
         endBlockNumber = web3.eth.blockNumber
         scanContractInPeriod(web3, startBlockNumber, endBlockNumber)
     else:
