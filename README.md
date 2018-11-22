@@ -1,2 +1,8 @@
-# eth-contract-scanner
-A python script to scan all smart contract on Ethereum and audit them by using Mythril
+# eth-contract-scanner :smirk_cat:
+
+A python script to get all smart contracts on Ethereum and audit them by using Mythril
+
+
+### Warning :bangbang:
+
+Geth, Mythril, web3.py are required :cactus:
