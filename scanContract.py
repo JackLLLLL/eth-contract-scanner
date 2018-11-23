@@ -16,7 +16,7 @@ def scanContractInPeriod(web3, startBlockNumber, endBlockNumber):
                 with open('ContractList.txt', 'a') as f:
                     f.write(contract)
     with open('ContractList.txt', 'a') as f:
-        end = 'till block ' + i + ' \n'
+        end = '... till block ' + str(i) + ' \n'
         f.write(end)
 
 def auditContractByAddress(address):
